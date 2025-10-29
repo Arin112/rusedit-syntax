@@ -2,7 +2,7 @@
   "name": "rusedit-syntax",
   "displayName": "RuEdit Syntax (local)",
   "description": "Локальная подсветка русских маркеров стиля для .txt. Use npm run build:grammar && vsce package to build.",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "publisher": "local",
   "engines": {
     "vscode": "^1.80.0"
