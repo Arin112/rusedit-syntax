@@ -14,7 +14,7 @@
     "type": "git",
     "url": "https://github.com/Arin112/rusedit-syntax"
   },
-  "license": "SEE LICENSE IN LICENSE.md",
+  "license": "LICENSE.md",
   "contributes": {
     "languages": [
       {
