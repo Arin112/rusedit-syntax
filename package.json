@@ -2,16 +2,29 @@
   "name": "rusedit-syntax",
   "displayName": "RuEdit Syntax (local)",
   "description": "Локальная подсветка русских маркеров стиля для .txt",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "local",
-  "engines": { "vscode": "^1.80.0" },
-  "categories": ["Programming Languages"],
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Arin112/rusedit-syntax"
+  },
+  "license": "SEE LICENSE IN LICENSE.md",
   "contributes": {
     "languages": [
       {
         "id": "rusedit",
-        "aliases": ["RuEdit"],
-        "extensions": [".txt"],
+        "aliases": [
+          "RuEdit"
+        ],
+        "extensions": [
+          ".txt"
+        ],
         "configuration": "./language-configuration.json"
       }
     ],

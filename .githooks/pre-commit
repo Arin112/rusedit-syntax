@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Allow skipping the bump explicitly if needed.
+if [[ "${SKIP_RUSEDIT_VERSION_BUMP:-}" == "1" ]]; then
+  exit 0
+fi
+
+# Only bump when package.json exists.
+if [[ ! -f package.json ]]; then
+  exit 0
+fi
+
+# Skip if package.json already staged with a manual version change.
+if ! git diff --cached --quiet -- package.json; then
+  exit 0
+fi
+
+echo "Auto-incrementing rusedit-syntax patch version..."
+
+node <<'NODE'
+const fs = require('fs');
+const path = require('path');
+const pkgPath = path.resolve('package.json');
+const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
+
+const parts = pkg.version.split('.').map(Number);
+if (parts.length !== 3 || parts.some(Number.isNaN)) {
+  throw new Error(`Unexpected version format: ${pkg.version}`);
+}
+
+parts[2] += 1;
+pkg.version = parts.join('.');
+
+fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n');
+NODE
+
+# Stage the updated version for the commit.
+git add package.json
+
+echo "package.json version bumped and staged."
+
+echo "Running vsce package to validate build..."
+if ! npx --no vsce package > /tmp/rusedit_vsce.log 2>&1; then
+  cat /tmp/rusedit_vsce.log
+  echo "vsce package failed; aborting commit."
+  exit 1
+fi
+
+# Stage refreshed VSIX and clean older build artifacts.
+latest_vsix=$(ls -t rusedit-syntax-*.vsix 2>/dev/null | head -n1 || true)
+if [[ -n "$latest_vsix" ]]; then
+  git add "$latest_vsix"
+else
+  echo "Warning: vsce package succeeded but no VSIX produced."
+fi
+
+echo "vsce package succeeded."
