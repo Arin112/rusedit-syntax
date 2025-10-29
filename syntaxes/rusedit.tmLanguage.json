@@ -1,0 +1,18 @@
+{
+  "scopeName": "source.rusedit",
+  "patterns": [
+    {
+      "include": "#sampleHighlight"
+    }
+  ],
+  "repository": {
+    "sampleHighlight": {
+      "name": "markup.sample.highlight.rusedit",
+      "patterns": [
+        {
+          "match": "(?i)маркер"
+        }
+      ]
+    }
+  }
+}

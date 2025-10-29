@@ -1,0 +1,38 @@
+{
+  "name": "rusedit-syntax",
+  "displayName": "RuEdit Syntax (local)",
+  "description": "Локальная подсветка русских маркеров стиля для .txt",
+  "version": "0.0.1",
+  "publisher": "local",
+  "engines": { "vscode": "^1.80.0" },
+  "categories": ["Programming Languages"],
+  "contributes": {
+    "languages": [
+      {
+        "id": "rusedit",
+        "aliases": ["RuEdit"],
+        "extensions": [".txt"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "rusedit",
+        "scopeName": "source.rusedit",
+        "path": "./syntaxes/rusedit.tmLanguage.json"
+      }
+    ],
+    "configurationDefaults": {
+      "editor.tokenColorCustomizations": {
+        "textMateRules": [
+          {
+            "scope": "markup.sample.highlight.rusedit",
+            "settings": {
+              "foreground": "#ff5f56"
+            }
+          }
+        ]
+      }
+    }
+  }
+}
