@@ -1,0 +1,23 @@
+{
+  "scopeName": "source.rusedit",
+  "patterns": [
+    {
+      "include": "#marker"
+    }
+  ],
+  "repository": {
+    "marker": {
+      "name": "marker",
+      "patterns": [
+        {
+          "placeholder": "deprecated",
+          "name": "rusedit.deprecated.highlight"
+        },
+        {
+          "placeholder": "restricted",
+          "name": "rusedit.restricted.highlight"
+        }
+      ]
+    }
+  }
+}

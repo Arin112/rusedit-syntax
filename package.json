@@ -1,8 +1,8 @@
 {
   "name": "rusedit-syntax",
   "displayName": "RuEdit Syntax (local)",
-  "description": "Локальная подсветка русских маркеров стиля для .txt",
-  "version": "0.0.3",
+  "description": "Локальная подсветка русских маркеров стиля для .txt. Use npm run build:grammar && vsce package to build.",
+  "version": "0.0.4",
   "publisher": "local",
   "engines": {
     "vscode": "^1.80.0"
@@ -13,6 +13,11 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/Arin112/rusedit-syntax"
+  },
+  "scripts": {
+    "build:grammar": "node scripts/build-grammar.js",
+    "prepackage:vsix": "npm run build:grammar",
+    "package:vsix": "vsce package"
   },
   "license": "LICENSE.md",
   "contributes": {
